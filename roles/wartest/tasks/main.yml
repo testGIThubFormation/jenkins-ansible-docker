@@ -23,7 +23,7 @@
     enabled: yes
 
 - name: Se connecter au registre Docker avec un token d'accès personnel
-  shell: echo "ghp3F5NtGxzVlN82NUWpJ3mCZq8rZMGzO2qJvvS" | docker login aichagnaka@gmail.com --password-stdin registry.gitlab.com
+  shell: echo "ghp3F5NtGxzVlN82NUWpJ3mCZq8rZMGzO2qJvvS" | docker login testGIThubFormation --password-stdin registry.gitlab.com
   ignore_errors: yes
 
 - name: run container
