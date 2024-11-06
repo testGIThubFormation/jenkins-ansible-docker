@@ -22,9 +22,6 @@
     state: started
     enabled: yes
 
-- name: Se connecter au registre Docker avec un token d'accès personnel
-  shell: echo "{{ docker_token }}" | docker login testGIThubFormation --password-stdin registry.gitlab.com
-
 - name: Run container
   docker_container:
     name: wartest
