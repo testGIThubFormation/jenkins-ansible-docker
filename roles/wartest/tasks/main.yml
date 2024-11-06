@@ -1,18 +1,34 @@
-- name: install pip
+- name: Update the apt package index again
   apt:
-    name: python-pip
+    update_cache: yes
+
+- name: Install Docker CE
+  apt:
+    name: docker-ce
     state: present
 
-- name: pip install docker-py
+- name: Install pip
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Install Docker Compose using pip
   pip:
-    name:
-      - docker
-      - docker-compose
+    name: docker-compose
+
+- name: Ensure Docker service is enabled and started
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Se connecter au registre Docker avec un token d'accès personnel
+  shell: echo "ghp3F5NtGxzVlN82NUWpJ3mCZq8rZMGzO2qJvvS" | docker login aichagnaka@gmail.com --password-stdin registry.gitlab.com
+  ignore_errors: yes
 
 - name: run container
   docker_container:
     name: wartest
-    image: "{{ image }}"
+    image: "{{ image }}"
     ports: 8081:8080
     state: started
- 
